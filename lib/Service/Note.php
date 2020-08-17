@@ -37,6 +37,8 @@ class Note {
 
 	public function getContent() : string {
 		$content = $this->file->getContent();
+		// blank files return false when using object store as primary storage
+		if ($content === false) $content = '';
 		if (!is_string($content)) {
 			throw new \Exception('Can\'t read file content.');
 		}
